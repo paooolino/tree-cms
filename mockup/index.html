@@ -3,8 +3,9 @@
   <head>
     <style>
       #leftpanel{position:absolute;top:0;left:0;overflow:scroll;}
-      #resizer{position:absolute;top:0;left:0;z-index:1;width:8px;margin-left:-4px;cursor:ew-resize;}
+      #resizer{position:absolute;top:0;left:0;z-index:1;width:10px;margin-left:-5px;cursor:ew-resize;}
       #rightpanel{position:absolute;top:0;right:0;overflow:scroll;}
+      .resizing{border-right:1px dashed red;}
     </style>
   </head>
   <body>
@@ -30,27 +31,53 @@
           </li>
         </ul>
       </div>
-      <div id="resizer">
+      <div id="resizer" draggable="true">
       </div>
       <div id="rightpanel">
       </div>
     </div>
     <script>
+    
+      var leftpanel = document.getElementById('leftpanel');
+      var resizer = document.getElementById('resizer');
+      var rightpanel = document.getElementById('rightpanel');
+      var leftpanel_w = 300;
+      
       function adjustLayout() {
-        var leftpanel = document.getElementById('leftpanel');
-        leftpanel.style.width = '300px';
+      
+        leftpanel.style.width = leftpanel_w + 'px';
         leftpanel.style.height = window.innerHeight + 'px';
         
-        var resizer = document.getElementById('resizer');
         resizer.style.left = leftpanel.style.width;
         resizer.style.height = window.innerHeight + 'px';
-        
-        var rightpanel = document.getElementById('rightpanel');
+
         rightpanel.style.width = (window.innerWidth - parseInt(leftpanel.style.width)) + 'px';
         rightpanel.style.height = window.innerHeight + 'px';
+        
       }
-      adjustLayout();
+      
       window.onresize = adjustLayout;
+      
+      resizer.onmouseenter = function(){
+        leftpanel.className = 'resizing';
+      }
+      
+      resizer.onmouseleave = function(){
+        leftpanel.className = '';
+      }
+      
+      resizer.ondrag = function(event){
+        leftpanel_w = event.clientX;
+        adjustLayout();
+      };
+      
+      resizer.ondragend = function(event){
+        leftpanel_w = event.clientX;
+        adjustLayout();
+      };
+      
+      adjustLayout();
+      
     </script>
   </body>
 </html>
