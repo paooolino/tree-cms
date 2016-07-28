@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      #leftpanel{position:absolute;top:0;left:0;overflow:scroll;}
+      #resizer{position:absolute;top:0;left:0;z-index:1;width:8px;margin-left:-4px;cursor:ew-resize;}
+      #rightpanel{position:absolute;top:0;right:0;overflow:scroll;}
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftpanel">
+        <ul>
+          <li>Home
+            <ul>
+              <li>women
+                <ul>
+                  <li>new-in</li>
+                  <li>dresses</li>
+                  <li>jeans</li>
+                  <li>footwear</li>
+                  <li>bags</li>
+                </ul>
+              </li>
+              <li>men</li>
+              <li>kids</li>
+              <li>sale</li>
+              <li>inspire</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="resizer">
+      </div>
+      <div id="rightpanel">
+      </div>
+    </div>
+    <script>
+      function adjustLayout() {
+        var leftpanel = document.getElementById('leftpanel');
+        leftpanel.style.width = '300px';
+        leftpanel.style.height = window.innerHeight + 'px';
+        
+        var resizer = document.getElementById('resizer');
+        resizer.style.left = leftpanel.style.width;
+        resizer.style.height = window.innerHeight + 'px';
+        
+        var rightpanel = document.getElementById('rightpanel');
+        rightpanel.style.width = (window.innerWidth - parseInt(leftpanel.style.width)) + 'px';
+        rightpanel.style.height = window.innerHeight + 'px';
+      }
+      adjustLayout();
+      window.onresize = adjustLayout;
+    </script>
+  </body>
+</html>

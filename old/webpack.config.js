@@ -13,10 +13,8 @@ module.exports = {
       loader: "babel-loader" 
     }, {
       test: /\.html$/,
-      loader: 'mustache'
-      // loader: 'mustache?minify'
-      // loader: 'mustache?{ minify: { removeComments: false } }'
-      // loader: 'mustache?noShortcut'
+      exclude: /node_modules/,
+      loader: 'html'
     }]
   }
 };
