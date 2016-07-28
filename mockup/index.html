@@ -2,34 +2,33 @@
 <html>
   <head>
     <style>
+      *{margin:0;padding:0;}
       #leftpanel{position:absolute;top:0;left:0;overflow:scroll;}
       #resizer{position:absolute;top:0;left:0;z-index:1;width:10px;margin-left:-5px;cursor:ew-resize;}
       #rightpanel{position:absolute;top:0;right:0;overflow:scroll;}
       .resizing{border-right:1px dashed red;}
+      .item{height:20px;overflow:hidden;cursor:pointer;}
+      .item:hover, .item.selected:hover{background-color:#fa0;}
+      .level_0 .inner{padding-left:5px;}
+      .level_1 .inner{padding-left:20px;}
+      .level_2 .inner{padding-left:35px;}
+      .item.selected{background-color:#ddd;}
     </style>
   </head>
   <body>
     <div id="container">
       <div id="leftpanel">
-        <ul>
-          <li>Home
-            <ul>
-              <li>women
-                <ul>
-                  <li>new-in</li>
-                  <li>dresses</li>
-                  <li>jeans</li>
-                  <li>footwear</li>
-                  <li>bags</li>
-                </ul>
-              </li>
-              <li>men</li>
-              <li>kids</li>
-              <li>sale</li>
-              <li>inspire</li>
-            </ul>
-          </li>
-        </ul>
+        <div class="item level_0"><div class="inner">Home</div></div>
+        <div class="item level_1 selected"><div class="inner">women</div></div>
+        <div class="item level_2"><div class="inner">new-in</div></div>
+        <div class="item level_2"><div class="inner">dresses</div></div>
+        <div class="item level_2"><div class="inner">jeans</div></div>
+        <div class="item level_2"><div class="inner">footwear</div></div>
+        <div class="item level_2"><div class="inner">bags</div></div>
+        <div class="item level_1"><div class="inner">men</div></div>
+        <div class="item level_1"><div class="inner">kids</div></div>
+        <div class="item level_1"><div class="inner">sale</div></div>
+        <div class="item level_1"><div class="inner">inspire</div></div>
       </div>
       <div id="resizer" draggable="true">
       </div>
